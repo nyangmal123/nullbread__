@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PostContainer from "./PostContainer";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { __getPost } from "../../../redux/modules/posts";
 import { useLocation, useNavigate } from "react-router-dom";
 import Reservation_Topimage from "../../Layout/Reservation_Topimage";
 import CusttomButton from "../../Tools/CusttomButton";
+import Pagination from "react-js-pagination";
 
 const PostsContainer = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,16 @@ const PostsContainer = () => {
   }, [dispatch]);
 
   const { posts } = useSelector((state) => state.posts);
+
+  const [page, setPage] = useState(1);
+  const [items, setItems] = useState(10);
+
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+  const itemChange = (e) => {
+    setItems(Number(e.target.value));
+  };
 
   return (
     <PostsWrap>
@@ -28,16 +39,18 @@ const PostsContainer = () => {
           <HeaderTh Width="130px">작성자</HeaderTh>
           <HeaderTh Width="130px">작성일</HeaderTh>
         </TableHeader>
-        {posts.map((post, index) => {
-          return (
-            <PostContainer
-              key={post.id}
-              post={post}
-              index={index + 1}
-            ></PostContainer>
-          );
-        })}
-        <PageNumberWrap>
+        {posts
+          .slice(items * (page - 1), items * (page - 1) + items)
+          .map((post, index) => {
+            return (
+              <PostContainer
+                key={post.id}
+                post={post}
+                index={(page - 1) * 10 + index + 1}
+              ></PostContainer>
+            );
+          })}
+        {/* <PageNumberWrap>
           <PageNumber>
             <span>1</span>
             <span>2</span>
@@ -45,7 +58,16 @@ const PostsContainer = () => {
             <span>4</span>
             <span>5</span>
           </PageNumber>
-        </PageNumberWrap>
+        </PageNumberWrap> */}
+        <PaginationBox>
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={items}
+            totalItemsCount={posts.length - 1}
+            pageRangeDisplayed={5}
+            onChange={handlePageChange}
+          ></Pagination>
+        </PaginationBox>
 
         <PostButtonWrap>
           <CusttomButton
@@ -66,6 +88,49 @@ const PostsContainer = () => {
 };
 
 export default PostsContainer;
+
+const PaginationBox = styled.div`
+  margin-top: 10px;
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+  ul.pagination li:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+  ul.pagination li:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+  ul.pagination li a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1rem;
+  }
+  ul.pagination li.active a {
+    color: white;
+  }
+  ul.pagination li.active {
+    background-color: #a5a5a5;
+  }
+  ul.pagination li a:hover,
+  ul.pagination li a.active {
+  }
+`;
 
 const PageNumberWrap = styled.div`
   height: 100px;
