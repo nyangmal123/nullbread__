@@ -63,7 +63,7 @@ const PostsContainer = () => {
           <Pagination
             activePage={page}
             itemsCountPerPage={items}
-            totalItemsCount={posts.length - 1}
+            totalItemsCount={posts.length}
             pageRangeDisplayed={5}
             onChange={handlePageChange}
           ></Pagination>
