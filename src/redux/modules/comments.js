@@ -1,12 +1,12 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import AXIOS_ADDRESS from './constant';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import AXIOS_ADDRESS from "./constant";
 
 export const __getComment = createAsyncThunk(
-  'comments/getcomment',
+  "comments/getcomment",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get();
+      const data = await axios.get(`${AXIOS_ADDRESS}/comments`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -15,10 +15,10 @@ export const __getComment = createAsyncThunk(
 );
 
 export const __addComment = createAsyncThunk(
-  'comments/addcomment',
+  "comments/addcomment",
   async (payload, thunkAPI) => {
     try {
-      await axios.post(AXIOS_ADDRESS, payload);
+      await axios.post(`${AXIOS_ADDRESS}/comments`, payload);
       const data = await axios.get(`${AXIOS_ADDRESS}/comments`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -28,7 +28,7 @@ export const __addComment = createAsyncThunk(
 );
 
 export const __deleteComment = createAsyncThunk(
-  'comments/deletecomment',
+  "comments/deletecomment",
   async (payload, thunkAPI) => {
     try {
       await axios.delete(`${AXIOS_ADDRESS}/comments/${payload}`);
@@ -41,7 +41,7 @@ export const __deleteComment = createAsyncThunk(
 );
 
 export const __deleteAllComment = createAsyncThunk(
-  'comments/deletecomment',
+  "comments/deletecomment",
   async (payload, thunkAPI) => {
     try {
       let data = await axios.get(`${AXIOS_ADDRESS}/comments`);
@@ -61,13 +61,10 @@ export const __deleteAllComment = createAsyncThunk(
 );
 
 export const __updateComment = createAsyncThunk(
-  'comments/updatecomment',
+  "comments/updatecomment",
   async (payload, thunkAPI) => {
     try {
-      await axios.patch(
-        `${AXIOS_ADDRESS}/comments/comments/${payload.id}`,
-        payload
-      );
+      await axios.patch(`${AXIOS_ADDRESS}/comments/${payload.id}`, payload);
       const data = await axios.get(`${AXIOS_ADDRESS}/comments`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -110,7 +107,7 @@ const initialState = {
 };
 
 const commentsSlice = createSlice({
-  name: 'comments',
+  name: "comments",
   initialState,
   reducers: {
     addComment: (state, action) => {

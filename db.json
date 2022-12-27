@@ -19,8 +19,8 @@
     {
       "id": "466aeec3-9497-9131-d4ef-712388e7f0ae",
       "name": "나이트엘프",
-      "title": "ㄹㅇㄴㄹㄴㅇ",
-      "content": "ㄹㄴㅇㄹㄴㅇㄹ",
+      "title": "1",
+      "content": "1",
       "date": "2022.12.26.",
       "time": "21:50"
     },
@@ -31,6 +31,22 @@
       "content": "ㅇㄹㄴㅁㄹㅇㅁㄴㅇㄻ",
       "date": "2022.12.26.",
       "time": "21:51"
+    },
+    {
+      "id": "560acb27-3117-b058-628f-b4798e97ad61",
+      "name": "나이트엘프",
+      "title": "ㄴㅇㄹㄴㅇ",
+      "content": "ㄹㄴㅇㄹㄴㅇㄹ",
+      "date": "2022.12.27.",
+      "time": "20:09"
+    },
+    {
+      "id": "8e5720f8-98a8-f6f7-911c-170f15a7adda",
+      "name": "넨마스터",
+      "title": "ㄴㅇㄹ",
+      "content": "ㄹㄴㅇㄹ",
+      "date": "2022.12.27.",
+      "time": "20:15"
     }
   ],
   "comments": [
@@ -42,6 +58,15 @@
       "toggledisplay": true,
       "date": "2022.12.26.",
       "time": "21:55"
+    },
+    {
+      "id": "c3c40b8e-57e2-7efa-1c0e-0154f30445af",
+      "name": "정근띠",
+      "post_id": "8e5720f8-98a8-f6f7-911c-170f15a7adda",
+      "content": "ㄴ",
+      "toggledisplay": true,
+      "date": "2022.12.27.",
+      "time": "20:15"
     }
   ],
   "product_posts": [
