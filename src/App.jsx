@@ -9,4 +9,4 @@ const App = () => {
 
 export default App;
 
-//커뮤니티페이지
+//페이지네이션
