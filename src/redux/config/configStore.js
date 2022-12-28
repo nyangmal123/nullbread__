@@ -1,13 +1,13 @@
 // src/redux/modules/config/configStore.js
 
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 /**
  * import 해온 것은 slice.reducer 입니다.
  */
-import posts from '../modules/posts';
-import comments from '../modules/comments';
-import product_posts from '../modules/productposts';
-import product_comments from '../modules/productcomments';
+import posts from "../modules/posts";
+import comments from "../modules/comments";
+import product_posts from "../modules/productposts";
+import product_comments from "../modules/productcomments";
 
 /**
  * 모듈(Slice)이 여러개인 경우
@@ -23,6 +23,7 @@ const store = configureStore({
     product_posts: product_posts,
     product_comments: product_comments,
   },
+  devTools: false,
 });
 
 export default store;
