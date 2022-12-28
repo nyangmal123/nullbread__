@@ -18,14 +18,13 @@ const PostsContainer = () => {
 
   const { posts } = useSelector((state) => state.posts);
 
+  const data = [...posts].reverse();
+
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(10);
 
   const handlePageChange = (page) => {
     setPage(page);
-  };
-  const itemChange = (e) => {
-    setItems(Number(e.target.value));
   };
 
   return (
@@ -39,7 +38,7 @@ const PostsContainer = () => {
           <HeaderTh Width="130px">작성자</HeaderTh>
           <HeaderTh Width="130px">작성일</HeaderTh>
         </TableHeader>
-        {posts
+        {data
           .slice(items * (page - 1), items * (page - 1) + items)
           .map((post, index) => {
             return (
